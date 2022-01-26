@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Detail</title>
+</head>
+<body>
+    <p> Nama Siswa : <span id="tempatnama" ></span></p>
+    <p> Judul Buku : <span id="tempatjudul" ></span></p>
+    <p> Kode Buku : <span id="tempatkode" ></span></p>
+    <p> Tanggal Pinjam : <span id="tempattanggal" ></span></p>
+    
+    <script>
+        const searchParams = new URL(document.URL).searchParams;
+        const name = searchParams.get("nama");
+        const title = searchParams.get("judul");
+        const number = searchParams.get("id");
+        const tanggal = searchParams.get("pinjam");
+
+        document.getElementById("tempatnama").innerHTML = name;
+        document.getElementById("tempatjudul").innerHTML = title;
+        document.getElementById("tempatkode").innerHTML = number;
+        document.getElementById("tempattanggal").innerHTML = tanggal;
+
+    </script>
+    
+</body>
+</html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+
+</head>
+<body>
+    <h2>Form Peminjaman Buku</h2>
+    <hr>
+    <form action="" id="form1" name="form1">
+
+        <label>Nama Siswa :  </label>
+        <input type="text" id="nama" >
+        
+        <label>Judul Buku</label>
+        <input type="text" id="judul" >
+        
+        <label>Kode Buku </label>
+        <input type="number" id="id" >
+        
+        <label>Tanggal Pinjam </label>
+        <input type="date" id="pinjam">
+        
+        <button type="button" onclick="proses()">Pinjam</button>
+    </form>
+    <script>
+        function proses(){
+            //ini untuk memilih mau memproses data atau tidak
+            const pilih = confirm("proses data");
+            if(pilih === true){
+                const name = document.getElementById("nama").value;
+                const title = document.getElementById("judul").value;
+                const number = document.getElementById("id").value;
+                const  tanggal = document.getElementById("pinjam").value;
+
+                const searchParams = new URLSearchParams({
+                    nama : name,
+                    judul : title,
+                    id : number,
+                    pinjam : tanggal,
+                });
+                window.location.href="detail.html?" + searchParams.toString();          
+            }else{
+                alert("Oke");
+
+            }
+        }
+    </script>
+    
+</body>
+</html>
